@@ -13,8 +13,8 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANO
 app.use(bodyParser.json());
 
 app.post("/webhook", async (req, res) => {
-  
-  const message = req.body?.message;
+  res.sendStatus(200);
+  const message = req.body?.message.message_id;
   console.log("Incoming Telegram message:", message);
   if (!message || !message.text) return res.sendStatus(200);
 
@@ -99,7 +99,7 @@ app.post("/webhook", async (req, res) => {
     await reply("⚠️ No valid item format found.");
   }
 
-  res.sendStatus(200);
+  
 });
 
 
